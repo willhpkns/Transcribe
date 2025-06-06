@@ -1,0 +1,325 @@
+/* Audio Player Styles - Clean and Minimal */
+#audio-player-container.audio-player {
+    background: #ffffff !important;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin: 24px 0;
+    border: 1px solid #e9ecef;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background: #ffffff;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.control-btn:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:active {
+    background: #e9ecef;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.time-display {
+    background: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 14px;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.progress-container {
+    margin: 20px 0;
+    position: relative;
+}
+
+.progress-bar {
+    position: relative;
+    background: #e9ecef;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s ease;
+    border-radius: 3px;
+}
+
+.progress-slider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    opacity: 0;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.progress-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
+.volume-container, .playback-speed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.volume-slider {
+    width: 80px;
+    cursor: pointer;
+    accent-color: #007bff;
+}
+
+.volume-value {
+    font-size: 12px;
+    color: #6c757d;
+    min-width: 30px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.playback-speed label {
+    font-size: 14px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.playback-speed select {
+    background: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #495057;
+}
+
+/* Transcript Styling - Minimal and Clean */
+.transcript-segment {
+    padding: 12px 5px;
+    margin: 8px 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.transcript-segment:hover {
+    background: rgba(37, 99, 235, 0.05);
+}
+
+/* Simple text highlighting only - no background changes */
+.transcript-segment.active-segment {
+    background: transparent;
+}
+
+.transcript-segment.active-segment .segment-text {
+    color: #2563eb !important;
+    font-weight: 600 !important;
+}
+
+.segment-info {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.speaker-label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.segment-timestamp {
+    font-size: 11px;
+    color: #9ca3af;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.segment-text {
+    color: #374151;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: color 0.15s ease;
+}
+
+/* Error Handling */
+.audio-error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+    animation: slideIn 0.3s ease;
+}
+
+.error-message {
+    color: #721c24;
+    font-weight: 500;
+}
+
+/* Loading Animation */
+.audio-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .audio-player {
+        padding: 20px;
+        margin: 16px 0;
+    }
+    
+    .audio-controls {
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .volume-container, .playback-speed {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .transcript-segment {
+        padding: 12px 8px;
+        margin: 6px 0;
+    }
+}
+
+/* Dark Mode Support - Force light theme for audio player */
+@media (prefers-color-scheme: dark) {
+    #audio-player-container.audio-player {
+        background: #ffffff !important;
+        border-color: #e9ecef !important;
+        color: #495057 !important;
+    }
+    
+    .control-btn {
+        background: #ffffff !important;
+        color: #495057 !important;
+        border-color: #dee2e6 !important;
+    }
+    
+    .control-btn:hover {
+        background: #f8f9fa !important;
+        border-color: #adb5bd !important;
+    }
+    
+    .time-display {
+        background: #ffffff !important;
+        color: #495057 !important;
+        border-color: #dee2e6 !important;
+    }
+    
+    .progress-bar {
+        background: #e9ecef !important;
+    }
+    
+    .volume-container, .playback-speed {
+        background: #ffffff !important;
+        border-color: #dee2e6 !important;
+        color: #495057 !important;
+    }
+    
+    .playback-speed select {
+        background: #ffffff !important;
+        color: #495057 !important;
+        border-color: #ced4da !important;
+    }
+    
+    .segment-text {
+        color: #374151 !important;
+    }
+    
+    /* Simple text highlighting - keep this blue even in dark mode */
+    .transcript-segment.active-segment .segment-text {
+        color: #2563eb !important;
+        font-weight: 600 !important;
+    }
+    
+    .audio-error {
+        background: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+    
+    .error-message {
+        color: #721c24 !important;
+    }
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Transcription Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/audio-player.css') }}">
     <style>
         * {
             margin: 0;
@@ -806,35 +807,48 @@
         }
 
         function displayResults(results) {
+            currentResults = results;
             const content = document.getElementById('transcriptionContent');
             
             let html = `
                 <div class="file-info">
                     <strong>File:</strong> ${results.filename}<br>
                     <strong>Language:</strong> ${results.language === 'en' ? 'English' : 'Traditional Chinese'}<br>
-                    <strong>Processed:</strong> ${new Date(results.timestamp).toLocaleString()}
+                    <strong>Processed:</strong> ${new Date(results.timestamp).toLocaleString()}<br>
+                    <strong>Speakers:</strong> ${results.speaker_count || 'Unknown'}<br>
+                    <strong>Duration:</strong> ${results.duration || 'Unknown'}
                 </div>
+                <div class="transcription-results">
             `;
 
             if (results.segments && results.segments.length > 0) {
-                results.segments.forEach(segment => {
+                results.segments.forEach((segment, index) => {
                     const startTime = formatTime(segment.start);
                     const endTime = formatTime(segment.end);
                     
                     html += `
-                        <div class="segment">
+                        <div class="transcript-segment" data-segment-index="${index}">
                             <div class="segment-info">
-                                <span class="speaker">${segment.speaker}</span>
-                                <span class="timestamp">${startTime} - ${endTime}</span>
+                                <span class="speaker-label">${segment.speaker}</span>
+                                <span class="segment-timestamp">${startTime} - ${endTime}</span>
                             </div>
                             <div class="segment-text">${segment.text.trim()}</div>
                         </div>
                     `;
                 });
+                
+                // Initialize audio player if we have uploaded audio
+                if (selectedFile) {
+                    setTimeout(() => {
+                        const audioUrl = URL.createObjectURL(selectedFile);
+                        initializeAudioPlayer(audioUrl, results.segments);
+                    }, 100);
+                }
             } else {
                 html += `<div class="segment-text">${results.full_text}</div>`;
             }
 
+            html += '</div>';
             content.innerHTML = html;
         }
 
@@ -899,6 +913,16 @@
             a.click();
             URL.revokeObjectURL(url);
         });
+
+        // Initialize audio player when transcription completes
+        function initializeAudioPlayer(audioUrl, segments) {
+            if (window.SyncedAudioPlayer) {
+                new SyncedAudioPlayer(audioUrl, segments);
+            }
+        }
     </script>
+    
+    <!-- Include the synchronized audio player -->
+    <script src="{{ url_for('static', filename='js/audio-player.js') }}"></script>
 </body>
 </html>
