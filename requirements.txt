@@ -3,6 +3,9 @@
 flask==2.3.3
 werkzeug==2.3.7
 
+# Environment variables
+python-dotenv==1.0.0
+
 # AI/ML Libraries  
 openai-whisper==20231117
 torch==2.1.0

@@ -27,7 +27,12 @@ venv/
 env/
 ENV/
 .venv
+
+# Environment Variables (IMPORTANT: Keep secrets private)
 .env
+.env.local
+.env.production
+.env.staging
 
 # IDE
 .vscode/settings.json

@@ -39,9 +39,15 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Configure Hugging Face token in `config.py`:
-   - Get your token from [Hugging Face](https://huggingface.co/settings/tokens)
-   - Accept terms at [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1)
+4. Configure environment variables:
+```bash
+# Copy the environment template
+cp .env.example .env
+
+# Edit .env file with your Hugging Face token
+# Get your token from: https://huggingface.co/settings/tokens
+# Accept terms at: https://huggingface.co/pyannote/speaker-diarization-3.1
+```
 
 5. Run the application:
 ```bash
@@ -82,12 +88,13 @@ python app.py
 
 ## Configuration
 
-Edit `config.py` to customize:
-- Hugging Face authentication token
-- Whisper model size (affects accuracy vs speed)
-- Server host and port settings
-- Enable/disable speaker diarization
-- File size limits and supported formats
+Environment variables in `.env` file:
+- `HUGGINGFACE_TOKEN` - Your Hugging Face authentication token (required for speaker diarization)
+- `WHISPER_MODEL` - Model size: tiny/base/small/medium/large (affects accuracy vs speed)
+- `HOST` - Server host (default: 0.0.0.0)
+- `PORT` - Server port (default: 5001)
+- `DEBUG` - Debug mode (default: True)
+- `MAX_FILE_SIZE_MB` - Maximum upload size (default: 1000MB)
 
 ## Dependencies
 
