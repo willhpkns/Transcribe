@@ -1,0 +1,18 @@
+# Audio Transcription Tool - Dependencies
+# Core web framework
+flask==2.3.3
+werkzeug==2.3.7
+
+# AI/ML Libraries  
+openai-whisper==20231117
+torch==2.1.0
+torchaudio==2.1.0
+
+# Speaker Diarization
+pyannote.audio==3.1.1
+huggingface-hub==0.17.3
+
+# Audio Processing
+librosa==0.10.1
+soundfile==0.12.1
+ffmpeg-python==0.2.0
